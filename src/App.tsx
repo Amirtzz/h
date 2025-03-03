@@ -3,9 +3,8 @@ import Header from './components/header/Header';
 import Home from './screens/home/Home';
 import About from './screens/about/About';
 import { useContext, useState } from 'react';
-import { AbcRounded, DarkMode } from '@mui/icons-material';
 import DarkModeProvider, { DarkModeContext } from './data/contexts/DarkMode.context';
-import { addAbortSignal } from 'stream';
+import SettingsPage from './screens/settings/settingsPage';
 
 function App() {
   const [currentPage,setCurrentpage]=useState('home')
@@ -21,6 +20,7 @@ function App() {
      <Header title='Habit Tracker' onLogoClick={goHome} />
      {currentPage=='about' && <About/>}
      {currentPage=='home' && <Home onPageSelect={changePage}/>}
+     {currentPage=='settings' && <SettingsPage />}
     </div>
     </DarkModeProvider>
   );

@@ -1,6 +1,6 @@
 import { Card, CardActionArea, CardContent, CardMedia, Grid2, Paper, Typography } from "@mui/material";
 import homeScreenImages from '../../assets/images/home-screen'
-import { useContext } from "react";
+import { CSSProperties, useContext } from "react";
 import { DarkModeContext } from "../../data/contexts/DarkMode.context";
 
 
@@ -8,17 +8,18 @@ interface Homeprops{
     onPageSelect:(pageName:string)=>void
 }
 export default function Home({onPageSelect}:Homeprops){
-    const darkMode=useContext(DarkModeContext)
+    const {darkMode}=useContext(DarkModeContext)
     const handleMenuclick=(pageName:string)=>{
         onPageSelect(pageName)
     }
-    return <Paper style={{backgroundColor:darkMode?"#444":undefined}}>
+    const cardStyle:CSSProperties = darkMode ? { backgroundColor: "#555" , color:"#ccc"} : {}
+    return <Paper style={{backgroundColor:darkMode ? "#444" : undefined}}>
         <Grid2 padding={2}>
-        <Card>
+        <Card style={cardStyle}>
         <CardActionArea onClick={()=>{handleMenuclick('habits')}}>
             <CardMedia component='img'
             height={150}
-            image={homeScreenImages.imageHabits}
+            image={ darkMode ? homeScreenImages.imageHabitsDark : homeScreenImages.imageHabits}
             />
             <CardContent>
                 <Typography variant="h5" component="div">
@@ -29,11 +30,11 @@ export default function Home({onPageSelect}:Homeprops){
       </Card>
       </Grid2>
       <Grid2 padding={2}>
-      <Card>
+      <Card style={cardStyle}>
         <CardActionArea  onClick={()=>{handleMenuclick('dashboard')}}>
         <CardMedia component='img'
             height={150}
-            image={homeScreenImages.imageDashboard}
+            image={darkMode ? homeScreenImages.imageDashboardDark : homeScreenImages.imageDashboard}
             />
             <CardContent>
                 <Typography variant="h5" component="div">
@@ -44,11 +45,11 @@ export default function Home({onPageSelect}:Homeprops){
       </Card>
       </Grid2>
       <Grid2 padding={2}>
-      <Card>
+      <Card style={cardStyle}>
         <CardActionArea onClick={()=>{handleMenuclick('settings')}}>
         <CardMedia component='img'
             height={150}
-            image={homeScreenImages.imageSettings}
+            image={darkMode ? homeScreenImages.imageSettingsDark : homeScreenImages.imageSettings}
             />
             <CardContent>
                 <Typography variant="h5" component="div">
@@ -59,11 +60,11 @@ export default function Home({onPageSelect}:Homeprops){
       </Card>
       </Grid2>
       <Grid2 padding={2}>
-      <Card>
+      <Card style={cardStyle}>
         <CardActionArea onClick={()=>{handleMenuclick('about')}}>
         <CardMedia component='img'
             height={150}
-            image={homeScreenImages.imageAbout}
+            image={darkMode ?homeScreenImages.imageAboutDark : homeScreenImages.imageAbout}
             />
             <CardContent>
                 <Typography variant="h5" component="div">
