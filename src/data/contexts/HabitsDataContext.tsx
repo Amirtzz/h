@@ -16,7 +16,7 @@ export const HabitContext=createContext<HabitDataContextType>({
 export default function HabitProvider({children}:{children:ReactNode}) {
     const [habits, setHabits] = useState<Habit[]>(['Wakeup early', 'Gym', 'Learn English'])
     const addHabit = (newHabit: Habit) => {
-        //TODO: add new habit to habits
+        setHabits([...habits,newHabit])
     }
     const removeHabitAt=(index:number)=>{
         //TODO: remove habit at index
